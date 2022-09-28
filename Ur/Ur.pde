@@ -1,5 +1,5 @@
-float urPoint1 = -1;
-float urHastighed1 = 0.002;
+float urPoint1 = -1.5;
+float urHastighed1 = 0.001;
 
 void setup() {
 size(1000, 1000);
@@ -12,17 +12,29 @@ void draw() {
 background(155);
 //uret virker desværre kun i center (0,0) men virker med variabel diameter og jeg flytter det med translate funktionen.
 translate(400,400);
-displayClock(0,0,400);
+Clock c = new Clock(0,0,400);
+c.displayClock();
 
 }
+public class Clock {  
+
+  int xpos;
+  int ypos;
+  int diameter;
   
+  public Clock(int xpos, int ypos, int diameter) {
+    this.xpos = xpos;
+    this.ypos = ypos;
+    this.diameter = diameter;
+    
+  }
 
-
-public void displayClock(int xpos, int ypos, int diameter) {
+public void displayClock() {
   //lav selve den circkulære struktur.
   fill(255);
-   circle(xpos, ypos, diameter);
   
+   circle(xpos, ypos, diameter);
+   
   //lav den bevægelige viser.
   line(xpos, ypos, diameter/2*cos(urPoint1), diameter/2*sin(urPoint1));
    urPoint1 = urPoint1 + urHastighed1; 
@@ -43,4 +55,5 @@ public void displayClock(int xpos, int ypos, int diameter) {
     }
   }
   
+}
 }
